@@ -1,0 +1,203 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+#head {
+    width: 100%;
+    background-color: #000;
+    height: 15%;
+    margin: 0;
+    padding: 0;
+    color: #EE82EE;
+    border-bottom: 1px solid #fff;
+}
+
+#user {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+#headBox {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+#username {
+    margin: 0;
+    padding: 30px;
+    font-size: 20px;
+    color: #EE82EE;
+}
+
+#headText {
+    margin: 0;
+    color: #EE82EE;
+    font-size: 2em;
+    vertical-align: bottom;
+    text-align: right;
+    padding: 40px;
+}
+
+#nav {
+    width: 19.5%;
+    height: 400px;
+    float: left;
+    border-right: 1px solid #fff;
+    background-color: black;
+    color: #fff;
+}
+
+#navText {
+    width: 80%;
+    margin: auto;
+    margin-top: 10%;
+    
+}
+
+#imagesBox {
+    width: 80%;
+    float: left;
+}
+
+#imageDiv {
+width: 33%;
+float: left;
+text-align: center;
+
+}
+
+.pageTitle {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    padding: 5px;
+}
+
+#image {
+    max-width: 70%;
+    max-height: 100%;
+    
+}
+
+#imageTitle {
+    font-size: 22px;
+    margin: 0;
+}
+
+#usun,
+#zmien {
+    text-decoration: none;
+}
+
+#usun {
+    color:  #EE82EE;
+}
+
+#zmien {
+    color: #fff;
+}
+
+
+.menu {
+    padding: 5px;
+    border: 1px solid #EE82EE;
+    border-radius: 15px 50px;
+    background-color: #EE82EE;
+    text-align: center;
+} 
+
+.menuText {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menuText:hover {
+    color: #000;
+}
+
+#szukaj {
+    padding: 5px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    text-align: center;
+}
+
+#imagesBox,
+.imagesBoxTable {
+    color: #fff;
+}
+
+.imagesBoxTable {
+    padding: 10px;
+    width: auto;
+    border: 1px solid yellow;
+}
+#udostepnij {
+    text-decoration: none;
+    color: greenyellow;
+}
+
+#skoncz {
+    text-decoration: none;
+    color: #EE82EE;
+}
+
+.row {
+    padding: 5px;
+}
+
+#wyloguj {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+
+#wylogujText {
+    text-decoration: none;
+    color: #fff;
+}
+
+#wylogujText:hover {
+    color: #EE82EE;
+}
+
+#zmienForm {
+    padding: 15px;
+    padding-left: 30px;
+    color: #fff;
+}
+
+#zmienForm h2 {
+    color: #EE82EE;
+}
+
+#szukaj_ponownie {
+    text-decoration: none;
+    color: #EE82EE;
+}
+
+.szukany_user {
+    color: #fff;
+    text-decoration: none;
+}
+
+.szukany_user:hover {
+    color: #EE82EE;
+}
+
+#searched_user {
+    padding: 10px;
+}
+
+#dodaj_obrazek,
+#szukaj_po {
+    padding-left: 15px;
+}
+
+.table-dark > tbody > tr:nth-child(n) > td, .table-dark > tbody > tr:nth-child(n) > th {
+    background-color: black;
+ }
