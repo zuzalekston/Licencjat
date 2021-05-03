@@ -20,10 +20,10 @@
         //$id_image = $_POST['id_image'];
         //echo $_POST['title'];
         //echo $_POST['id_image'];
-        $query = "UPDATE Images SET title = '".$_POST['title']."' WHERE id=".$_GET['id_image'].";";
+        $query = "UPDATE Images SET title = '".$_POST['title']."', text = '".$_POST['text']."' WHERE id=".$_GET['id_image'].";";
         echo $query;
 
-        $result = mysqli_query($con, $query);
+        $result = mysqli_query($con, $query); 
     
         if($result == true) {
            // $_SESSION['userLoggedIn'] = $username;
@@ -37,7 +37,7 @@
     }
 
     $id_image = $_GET['id_image'];
-    echo $id_image;
+    
     $images = mysqli_query($con, "SELECT * FROM Images WHERE id = ".$_GET['id_image'].";");
     $image = mysqli_fetch_array($images);
 
@@ -48,15 +48,21 @@
 ?>
 
     <form id="zmienForm" action="zmien.php?id_image=<?php echo $id_image; ?>" method="POST">
-					<h2>Zmień nazwę</h2>
-					<p>
-						<label for="title">Nazwa: </label>
-						<input id='title' name='title' type='text' value='<?php echo $image["title"]; ?>'>
-                        
-					</p>
+            <h2>Edytuj</h2>
 
-					<button type="submit" name="zmienButton">Zapisz</button>
-                    <button type="submit" name="anulujButton">Anuluj</button>
+                <div class="form-group" style="margin-bottom: 2%; margin-top:1%">
+                        <label for="exampleFormControlInput1">Zmień nazwę:</label>
+                        <input type="text" name="title" class="form-control" id="text" value='<?php echo $image["title"]; ?>'>
+                </div>
+               
+                <div class="form-group">
+						<label for="exampleFormControlTextarea1">Zmień opis:</label>
+						<textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" >
+                            <?php echo $image["text"]; ?>
+                        </textarea>
+				</div>
+            <button type="submit" name="zmienButton">Zapisz</button>
+            <button type="submit" name="anulujButton">Anuluj</button>
 
 					
 	</form>

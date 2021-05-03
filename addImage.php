@@ -23,7 +23,7 @@ if (isset($_SESSION['userLoggedIn'])) {
 			<div id="user">
 				<p id="username">
 					<?php echo $_SESSION['userLoggedIn'];
-echo "</br>"; ?>
+						echo "</br>"; ?>
 				</p>
 
 			</div>
@@ -42,9 +42,11 @@ echo "</br>"; ?>
 				<div id="navText">
 					<p id="szukaj">Witaj w Grafi!</p>
 					<p class="menu"><a class="menuText" href="index.php">Moje obrazki</a></p>
+					<p class="menu"><a class="menuText" href="hiddengallery.php">Ukryta galeria</a></p>
                     <p class="menu"><a class="menuText" href="shared.php">Udostępnione dla mnie</a></p>
                     <p class="menu"><a class="menuText" href="shareTo.php">Udostępnij</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">Dodaj obrazek</a></p>
+					<p class="menu"><a class="menuText" href="settings.php">Ustawienia</a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
 				</div>
 
@@ -56,15 +58,34 @@ echo "</br>"; ?>
 
 					<h2>Dodaj nowy obrazek lub zdjęcie :) </h2>
 
-						<form action="upload.php" method="post" enctype="multipart/form-data">
+						<form action="upload.php" method="post" enctype="multipart/form-data" id="imageform">
 
-							Wybierz obrazek:
+							Wybierz obrazek: </br>
 							<input type="file" name="fileToUpload" id="fileToUpload"> </br></br>
-							Nazwij go:
-							<input type="text" name="title">
-							</br></br>
+							
+
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Nazwij go:</label>
+								<input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+							</div>
+							</br>
+							
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Dodaj opis:</label>
+								<textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							</br>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1">
+									Ukryta galeria 
+								</label>
+							</div>
+
+
 							<input type="submit" value="Dodaj" name="submit">
 						</form>
+					
 				<div>
 
 			</div>

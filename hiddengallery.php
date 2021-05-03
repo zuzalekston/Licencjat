@@ -9,8 +9,8 @@ if (isset($_SESSION['userLoggedIn'])) {
     header("Location: register.php");
 }
 
-include "szukaj.php";
 ?>
+
 <html>
 <head>
 	<title>Grafi</title>
@@ -27,6 +27,7 @@ include "szukaj.php";
 			<div id="user">
 				<p id="username">
 					<?php echo $_SESSION['userLoggedIn'];
+				
 echo "</br>"; ?>
 				</p>
 
@@ -58,41 +59,7 @@ echo "</br>"; ?>
 			</div>
 
 			<div id="imagesBox">
-				<?php
-$id_image = $_GET['id_image'];
+            </div>
 
-$username = $_SESSION['userLoggedIn'];
-$userId = $_SESSION['userId'];
-?>
-					<p class='pageTitle'>UDOSTĘPNIONE DLA MNIE</p></br></br>
-
-					<form action="szukaj.php" method="POST">
-						<p id="szukaj_po">Szukaj po nazwie użytkownika:
-						<input type='text' name='search_user'>
-
-						<button type="submit" name="szukajButton">Szukaj</button></p>
-						</form>
-			<?php
-$query = "SELECT title, image, type, u.username FROM Images i
-							  JOIN Users u on u.id = i.id_user
-							  JOIN Friends f ON f.id_user = u.id
-							  WHERE f.id_friend = $userId";
-$share = mysqli_query($con, $query);
-
-echo "</br>";
-while ($row = mysqli_fetch_array($share)) {
-    echo "<div id='imageDiv'>";
-    echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' />";
-    echo "</br>";
-    echo "<p id='imageTitle'>" . $row['title'] . "</p>";
-    echo "<p id='nazwa_udost'>" . $row['username'] . "</p>";
-    echo "</div>";
-}
-
-?>
-			</div>
-		</div>
-	</div>
 </body>
-
 </html>

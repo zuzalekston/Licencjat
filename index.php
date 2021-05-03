@@ -26,16 +26,17 @@ if (isset($_SESSION['userLoggedIn'])) {
 		<div id="head">
 			<div id="user">
 				<p id="username">
-					<?php echo $_SESSION['userLoggedIn'];
 				
-echo "</br>"; ?>
+					<?php echo "Grafi";
+				
+echo "</br>"; ?> 
 				</p>
 
 			</div>
 
 			<div id="headBox">
 				<p id="headText">
-					Grafi
+					<?php echo $_SESSION['userLoggedIn'] ?>
 				</p>
 			</div>
 
@@ -47,9 +48,11 @@ echo "</br>"; ?>
 				<div id="navText">
 					<p id="szukaj">Witaj w Grafi!</p>
 					<p class="menu"><a class="menuText" href="index.php">Moje obrazki</a></p>
+					<p class="menu"><a class="menuText" href="hiddengallery.php">Ukryta galeria</a></p>
 					<p class="menu"><a class="menuText" href="shared.php">Udostępnione dla mnie</a></p>
 					<p class="menu"><a class="menuText" href="shareTo.php">Udostępnij</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">Dodaj obrazek</a></p>
+					<p class="menu"><a class="menuText" href="settings.php">Ustawienia</a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
 				</div>
 
@@ -72,11 +75,15 @@ while ($row = mysqli_fetch_array($images)) {
 
 	echo "<div id='imageDiv'>";
 
+	echo "<p id='imageTitle'>" . $row['title'] . "</p>";
     echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' />";
     echo "</br>";
-    echo "<p id='imageTitle'>" . $row['title'] . "</p>";
+    
+	if($row['text'] != NULL){
+		echo "<p>" . $row['text'] . "</p>";
+	}
 
-    echo "<a id='zmien' href='zmien.php?id_image=" . $row['id'] . "'>zmień</a>";
+    echo "<a id='zmien' href='zmien.php?id_image=" . $row['id'] . "'>edytuj</a>";
     echo "	";
     echo "<a id='usun' href='usun.php?id_image=" . $row['id'] . "'>usuń</a>";
 

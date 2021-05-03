@@ -55,18 +55,17 @@ if ($uploadOk == 0) {
 
     $image = $_FILES['image']['tmp_name'];
     $title = $_POST['title'];
+    $text = $_POST['text'];
     $username = $_SESSION['userLoggedIn'];
     $type = $_FILES["fileToUpload"]["type"];
 
     $imgContent = addslashes(file_get_contents($image));
 
-    $query = "INSERT INTO Images VALUES (NULL, (SELECT id FROM Users WHERE username='$username'),'$title', NULL, '$hex_string', '$type', 0, 0);";
+    $query = "INSERT INTO Images VALUES (NULL, (SELECT id FROM Users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', 0, 0);";
 
-    alert($query);
     $result = mysqli_query($con, $query);
     if($result == false) {
         alert("Wystąpił błąd. Obraz nie został dodany.");
-        
     }
 
 

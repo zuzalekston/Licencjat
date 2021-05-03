@@ -43,9 +43,11 @@ else {
 				<div id="navText">
 					<p id="szukaj">Witaj w Grafi!</p>
 					<p class="menu"><a class="menuText" href="index.php">Moje obrazki</a></p>
+					<p class="menu"><a class="menuText" href="hiddengallery.php">Ukryta galeria</a></p>
 					<p class="menu"><a class="menuText" href="shared.php">Udostępnione dla mnie</a></p>
 					<p class="menu"><a class="menuText" href="shareTo.php">Udostępnij</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">Dodaj obrazek</a></p>
+					<p class="menu"><a class="menuText" href="settings.php">Ustawienia</a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
 				</div>
 			

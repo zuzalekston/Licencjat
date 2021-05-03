@@ -55,12 +55,12 @@ class Account
 
     private function insertUserDetails($un, $fn, $ln, $em, $pw)
     {
-        $encryptedPw = md5($pw);
+        $encryptedPw = md5($pw);  
 
         $query = "INSERT INTO Users VALUES (NULL, '$un', '$fn', '$ln', '$em', '$encryptedPw')";
-        echo $query;
+        
         $result = mysqli_query($this->con, $query);
-        echo $result;
+        
 
         return $result;
     }
@@ -68,7 +68,7 @@ class Account
     private function validateUsername($un)
     {
 
-        if (strlen($un) > 25 || strlen($un) < 5) {
+        if (strlen($un) > 25 || strlen($un) < 2) {
             array_push($this->errorArray, Constants::$usernameCharacters);
             return;
         }
