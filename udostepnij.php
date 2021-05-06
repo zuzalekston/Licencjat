@@ -1,10 +1,10 @@
 <?php
-    include("includes/config.php");
-    $id = $_GET['id'];
-    $id_friend = $_GET['id_friend'];
-    $query = "INSERT INTO Friends VALUES ($id, $id_friend);";
+include "includes/config.php";
+$id = $_GET['id'];
+$id_watched = $_GET['id_watched'];
+$query = "INSERT INTO watched VALUES ($id, $id_watched);";
 
-    $result = mysqli_query($con, $query);
+$result = mysqli_query($con, $query);
 
-    ?>
+?>
    <meta http-equiv="refresh" content="0; url=shareTo.php" />

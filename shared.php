@@ -47,8 +47,8 @@ echo "</br>"; ?>
 					<p id="szukaj">Witaj w Grafi!</p>
 					<p class="menu"><a class="menuText" href="index.php">Moje obrazki</a></p>
 					<p class="menu"><a class="menuText" href="hiddengallery.php">Ukryta galeria</a></p>
-					<p class="menu"><a class="menuText" href="shared.php">Udostępnione dla mnie</a></p>
-					<p class="menu"><a class="menuText" href="shareTo.php">Udostępnij</a></p>
+					<p class="menu"><a class="menuText" href="shared.php">Obserwowane</a></p>
+					<p class="menu"><a class="menuText" href="shareTo.php">Obserwuj</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">Dodaj obrazek</a></p>
 					<p class="menu"><a class="menuText" href="settings.php">Ustawienia</a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
@@ -75,8 +75,9 @@ $userId = $_SESSION['userId'];
 			<?php
 $query = "SELECT title, image, type, u.username FROM Images i
 							  JOIN Users u on u.id = i.id_user
-							  JOIN Friends f ON f.id_user = u.id
-							  WHERE f.id_friend = $userId";
+							  JOIN watched f ON f.id_watched = u.id
+							  WHERE f.id_user = $userId 
+							  ORDER BY i.id DESC";
 $share = mysqli_query($con, $query);
 
 echo "</br>";
