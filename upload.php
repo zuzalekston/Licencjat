@@ -14,6 +14,7 @@ $uploadOk = 1;
 //$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
+   
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         //echo "File is an image - " . $check["mime"] . ".";
@@ -33,8 +34,8 @@ if ($_FILES["fileToUpload"]["size"] > 5000000) {
 
 // Allow certain file formats
 /*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+&& $imageFileType != "gif" && $imageFileType != ".JPG" ) {
+    alert("Przepraszamy, Twój obrazek musi mieć rozszerzenie JPG, JPEG, PNG lub GIF.");
 $uploadOk = 0;
 }*/
 
@@ -43,6 +44,7 @@ if ($uploadOk == 0) {
     alert("Przepraszamy, Twój obrazek nie został załadowany");
 // if everything is ok, try to upload file
 } else {
+    
     //if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     //    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     // } else {
@@ -62,17 +64,19 @@ if ($uploadOk == 0) {
     $imgContent = addslashes(file_get_contents($image));
 
     $query = "INSERT INTO Images VALUES (NULL, (SELECT id FROM Users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', 0, 0);";
+    echo $query;
+    //$result = mysqli_query($con, $query);
 
-    $result = mysqli_query($con, $query);
-    if($result == false) {
+    if ($con->query($query) === FALSE) {
+        echo "Error: " . $query . "<br>" . $con->error;
         alert("Wystąpił błąd. Obraz nie został dodany.");
+    } else {
+        alert("Obraz został dodany.");
     }
-
-
 
 }
 
 ?>
-    <p class="menu"><a class="menuText" href="addImage.php">Wróć</a></p>
+   <a id="wrocText" href="addImage.php"><p id="wroc">Wróć</p></a>
 </body>
 </html>

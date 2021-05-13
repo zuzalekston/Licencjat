@@ -4,8 +4,8 @@ session_start();
 $timezone = date_default_timezone_set("Europe/London");
 
 $dbhost = 'localhost';
-$dbuser = 'licencjat';
-$dbpass = 'bRyLcrfdOWEQnj8U';
+$dbuser = 'root';
+$dbpass = '';
 $dbname = 'licencjat';
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("Bład połączenia z bazą");
@@ -16,3 +16,7 @@ function alert($message)
     echo $message;
     echo "</div>";
 }
+
+set_time_limit(0);   
+ini_set('mysql.connect_timeout','90');   
+ini_set('max_execution_time', '1');   

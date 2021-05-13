@@ -9,8 +9,8 @@ if (isset($_SESSION['userLoggedIn'])) {
     header("Location: register.php");
 }
 
+include "szukaj.php";
 ?>
-
 <html>
 <head>
 	<title>Grafi</title>
@@ -22,8 +22,40 @@ if (isset($_SESSION['userLoggedIn'])) {
 <body>
 	<div id="container">
 			<div id="imagesBox">
-            </div>
+				<?php
+					$id_image = $_GET['id_image'];
 
+					$username = $_SESSION['userLoggedIn'];
+					$userId = $_SESSION['userId'];
+				?>
+					<p class='pageTitle'>UDOSTĘPNIONE DLA MNIE</p></br></br>
+
+					<form action="szukaj.php" method="POST">
+						<p id="szukaj_po">Szukaj po nazwie użytkownika:
+						<input type='text' name='search_user'>
+
+						<button type="submit" name="szukajButton">Szukaj</button></p>
+					</form>
+					<?php
+						$query = "SELECT title, image, type, u.username FROM Images i
+																			JOIN Users u on u.id = i.id_user
+																			JOIN watched f ON f.id_watched = u.id
+																			WHERE f.id_user = $userId
+																			ORDER BY i.id DESC";
+						$share = mysqli_query($con, $query);
+
+						echo "</br>";
+						while ($row = mysqli_fetch_array($share)) {
+							echo "<div id='imageDiv'>";
+							echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' />";
+							echo "</br>";
+							echo "<p id='imageTitle'>" . $row['title'] . "</p>";
+							echo "<p id='nazwa_udost'>" . $row['username'] . "</p>";
+							echo "</div>";
+						}
+
+					?>
+			</div>
 			<div id="nav">
 				<div id="navText">
 					<p id="headText"><a id="userHref" href="user.php"><?php echo $_SESSION['userLoggedIn'] ?></a></p>
@@ -35,7 +67,9 @@ if (isset($_SESSION['userLoggedIn'])) {
 					<p class="menu"><a class="menuText" href="ustawienia.php">USTAWIENIA </a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
 				</div>
+
 			</div>
 	</div>
 </body>
+
 </html>

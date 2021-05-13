@@ -1,14 +1,13 @@
 
 <?php
-include("includes/config.php");
+include "includes/config.php";
 
 //session_destroy(); LOGOUT
 
-if(isset($_SESSION['userLoggedIn'])) {
-	$userLoggedIn = $_SESSION['userLoggedIn'];
-}
-else {
-	header("Location: register.php");
+if (isset($_SESSION['userLoggedIn'])) {
+    $userLoggedIn = $_SESSION['userLoggedIn'];
+} else {
+    header("Location: register.php");
 }
 
 ?>
@@ -28,9 +27,9 @@ else {
 			<div id="user">
 				<p id="username">
 					<?php echo $_SESSION['userLoggedIn'];
-					echo "</br>"; ?> 
+echo "</br>"; ?>
 				</p>
-			
+
 			</div>
 
 			<div id="headBox">
@@ -39,60 +38,60 @@ else {
 				</p>
 			</div>
 
-		
+
 		</div>
 
-		<div id="rest"> 
+		<div id="rest">
 			<div id="nav">
 				<div id="navText">
 					<p id="szukaj">Witaj w Grafi!</p>
-					<p class="menu"><a class="menuText" href="index.php">Moje obrazki</a></p>
-					<p class="menu"><a class="menuText" href="shared.php">Udostępnione dla mnie</a></p>
-					<p class="menu"><a class="menuText" href="shareTo.php">Udostępnij</a></p>
-					<p class="menu"><a class="menuText" href="addImage">Dodaj obrazek</a></p>
+					<p class="menu"><a class="menuText" href="index.php">MOJE OBRAZKI</a></p>
+					<p class="menu"><a class="menuText" href="obserwowane.php">Udostępnione dla mnie</a></p>
+					<p class="menu"><a class="menuText" href="obserwuj.php">Udostępnij</a></p>
+					<p class="menu"><a class="menuText" href="addImage">DODAJ OBRAZEK</a></p>
 					<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
 				</div>
-			
+
 
 			</div>
 
 			<div id="imagesBox">
-			
+
 					<p class='pageTitle'>udostępnione dla mnie</p></br>
 
-					<a id="szukaj_ponownie" href="shared.php">Wyszukaj jeszcze raz</a></br>
+					<a id="szukaj_ponownie" href="obserwowane.php">Wyszukaj jeszcze raz</a></br>
 					<p> Obrazki dostępnione od użytkownika <?php echo $_GET['username']; ?>
 					</p></br>
 
 					<?php
-						$query = "SELECT * FROM Images JOIN Users ON Images.id = Users.id WHERE username = '".$_GET['username']."' ORDER BY id_image DESC;";
-						//echo $query;
+$query = "SELECT * FROM Images JOIN Users ON Images.id = Users.id WHERE username = '" . $_GET['username'] . "' ORDER BY id_image DESC;";
+//echo $query;
 
-						$images = mysqli_query($con, "SELECT * FROM Images JOIN Users ON Images.id = Users.id WHERE username = '".$_GET['username']."' ORDER BY id_image DESC;");
+$images = mysqli_query($con, "SELECT * FROM Images JOIN Users ON Images.id = Users.id WHERE username = '" . $_GET['username'] . "' ORDER BY id_image DESC;");
 
-						while($row = mysqli_fetch_array($images)) {
-							echo "<div id='imageDiv'>";
+while ($row = mysqli_fetch_array($images)) {
+    echo "<div id='imageDiv'>";
 
-							echo "<img id='image' src='data:".$row['type'].";base64, ".$row['image']."' />";
-							echo "</br>";
-							echo "<p id='imageTitle'>".$row['title']."</p>";
-							
-							echo "</br></br></br>";
-							echo "</div>";
+    echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' />";
+    echo "</br>";
+    echo "<p id='imageTitle'>" . $row['title'] . "</p>";
 
-						}
+    echo "</br></br></br>";
+    echo "</div>";
 
-					?>
-	
-			
-			
+}
+
+?>
+
+
+
 			</div>
-		
-		
-		
+
+
+
 		</div>
-	
-	
+
+
 	</div>
 
 

@@ -7,4 +7,4 @@ $query = "INSERT INTO watched VALUES ($id, $id_watched);";
 $result = mysqli_query($con, $query);
 
 ?>
-   <meta http-equiv="refresh" content="0; url=shareTo.php" />
+   <meta http-equiv="refresh" content="0; url=obserwuj.php" />

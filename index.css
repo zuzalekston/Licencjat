@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #head {
     width: 100%;
@@ -10,7 +11,7 @@ body {
     height: 15%;
     margin: 0;
     padding: 0;
-    color: #EE82EE;
+    color: #E96669;
     border-bottom: 1px solid #fff;
 }
 
@@ -30,23 +31,29 @@ body {
     margin: 0;
     padding: 30px;
     font-size: 20px;
-    color: #EE82EE;
+    color: #E96669;
 }
 
 #headText {
     margin: 0;
-    color: #EE82EE;
-    font-size: 2em;
+    color: #E96669;
+    font-size: 20px;
     vertical-align: bottom;
     text-align: right;
-    padding: 40px;
+    padding-bottom: 50px;
 }
+
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  
+}
+
 
 #nav {
     width: 19.5%;
-    height: 400px;
-    float: left;
-    border-right: 1px solid #fff;
     background-color: black;
     color: #fff;
 }
@@ -55,19 +62,56 @@ body {
     width: 80%;
     margin: auto;
     margin-top: 10%;
-    
+    font-size: 14px;
 }
 
+.menu {
+    padding: 2px;
+    text-align: right;
+} 
+
+.menuText {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menuText:hover {
+    color: #E96669;
+}
+
+#userHref {
+    text-decoration: none;
+    color: #E96669;
+}
 #imagesBox {
     width: 80%;
-    float: left;
+}
+
+#singleImageDiv {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#singleImage {
+    max-width: 550px;
+    max-height: 550px;
+}
+
+.aboutImage {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#komentarze {
+    margin-top: 50px;
 }
 
 #imageDiv {
-width: 33%;
-float: left;
-text-align: center;
-
+    width: 30%;
 }
 
 .pageTitle {
@@ -77,10 +121,35 @@ text-align: center;
     padding: 5px;
 }
 
+#hide {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+#image:hover {
+    opacity: 0.5;
+}
+
 #image {
-    max-width: 70%;
-    max-height: 100%;
-    
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+#imageDiv:hover #image {
+    opacity: 0.5;
+}
+
+#imageDiv:hover #hide {
+    opacity: 1;
 }
 
 #imageTitle {
@@ -94,36 +163,12 @@ text-align: center;
 }
 
 #usun {
-    color:  #EE82EE;
+    color:  #E96669;
+    padding-left: 2em;
 }
 
 #zmien {
     color: #fff;
-}
-
-
-.menu {
-    padding: 5px;
-    border: 1px solid #EE82EE;
-    border-radius: 15px 50px;
-    background-color: #EE82EE;
-    text-align: center;
-} 
-
-.menuText {
-    text-decoration: none;
-    color: #fff;
-}
-
-.menuText:hover {
-    color: #000;
-}
-
-#szukaj {
-    padding: 5px;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
-    text-align: center;
 }
 
 #imagesBox,
@@ -143,7 +188,7 @@ text-align: center;
 
 #skoncz {
     text-decoration: none;
-    color: #EE82EE;
+    color: #E96669;
 }
 
 .row {
@@ -152,17 +197,17 @@ text-align: center;
 
 #wyloguj {
     padding: 5px;
-    text-align: center;
-    border-bottom: 1px solid #fff;
+    text-align: right;
+
 }
 
 #wylogujText {
     text-decoration: none;
-    color: #fff;
+    color: #E96669;
 }
 
 #wylogujText:hover {
-    color: #EE82EE;
+    color: #E96669;
 }
 
 #zmienForm {
@@ -170,12 +215,12 @@ text-align: center;
 }
 
 #zmienForm h2 {
-    color: #EE82EE;
+    color: #E96669;
 }
 
 #szukaj_ponownie {
     text-decoration: none;
-    color: #EE82EE;
+    color: #E96669;
 }
 
 .szukany_user {
@@ -184,7 +229,7 @@ text-align: center;
 }
 
 .szukany_user:hover {
-    color: #EE82EE;
+    color: #E96669;
 }
 
 #searched_user {
@@ -199,3 +244,42 @@ text-align: center;
 .table-dark > tbody > tr:nth-child(n) > td, .table-dark > tbody > tr:nth-child(n) > th {
     background-color: black;
  }
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #E96669 !important;
+    border-color: #E96669;
+}
+
+#registerForm, #imageForm {
+    padding: 30px 0 0 30px;
+}
+
+.dodajButton {
+    background-color: #E96669;
+}
+
+#wroc {
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #E96669;
+    border-radius: 15px 50px;
+    background-color: #E96669;
+    text-align: center;
+}
+
+#wroc:hover {
+    background-color: #fff;
+}
+
+#wrocText {
+    text-decoration: none;
+    color: #fff;
+}
+
+#wrocText:hover {
+    color: #E96669;
+}
+
+#tableObserwuj {
+    padding: 30px 0 0 30px;
+}

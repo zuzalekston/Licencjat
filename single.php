@@ -24,21 +24,33 @@ if (isset($_SESSION['userLoggedIn'])) {
 	<div id="container">
 			<div id="imagesBox" class="gallery">
 				<?php
-				$query = "SELECT i.id, i.title, i.text, i.image, i.type FROM Images as i JOIN Users as u ON i.id_user = u.id WHERE username = '" . $_SESSION['userLoggedIn'] . "' ORDER BY i.id DESC;";
+                $idImage = $_GET['id'];
+				$query = "SELECT * FROM Images where id = $idImage;";
 				$images = mysqli_query($con, $query);
 				//$id_image = $_GET['id_image'];
 
-				while ($row = mysqli_fetch_array($images)) {
+				while ($row = mysqli_fetch_array($images)) { ?>
+					<div id='singleImageDiv'>
+						
+                        <div class = "singleImages">
+                            <?php echo "<img id='singleImage' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' class='img-fluid' alt='Responsive image'>"; ?>
+                        </div>
+                        <div class ="aboutImage">
+							<div id="opis">
+								<?php echo "<h3>" . $row['title'] . "</h3>"; ?>
+								<p>Opis:
+								<?php echo $row['text']."</p>" ?>
+								<?php echo "<a id='zmien' href='zmien.php?id_image=" . $row['id'] . "'>edytuj</a>";
+								echo "    ";
+								echo "<a id='usun' href='usun.php?id_image=" . $row['id'] . "'>usuń</a>"; ?>
+							</div>
+							<div id="komentarze">
+								<p>Komentarze:</p>
+							</div>
+                        </div>
 
-					echo "<div id='imageDiv'>";
-						//echo "<p id='imageTitle'>" . $row['title'] . "</p>";
-						echo "<a href='single.php?id=".$row['id']."'>";
-							echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' class='img-fluid' alt='Responsive image'>";
-							echo "<div id='hide'>";
-								echo "<p clsss='hiddenText'>".$row['title']."</p>";
-								//echo "<p clsss='hiddenText'>".$row['text']."</p>";
-							echo "</div>";
-						echo "</a>";
+					</div>
+                <?php
 						//echo "</br>";
 
 						/*if($row['text'] != NULL){
@@ -50,7 +62,7 @@ if (isset($_SESSION['userLoggedIn'])) {
 						echo "<a id='usun' href='usun.php?id_image=" . $row['id'] . "'>usuń</a>";
 
 						echo "</br></br>"; */
-					echo "</div>";
+					
 				}
 				?>
 			</div>
@@ -69,30 +81,5 @@ if (isset($_SESSION['userLoggedIn'])) {
 			</div>
 	</div>
 
-	<script>
-		//var masonry = new Macy({
-  		//	container: 'div.gallery',
-		//	columns: 4,
-		//});
-        var masonry = new Macy({
-            container: '#imagesBox',
-            trueOrder: false,
-            waitForImages: true,
-            useOwnImageLoader: false,
-            debug: true,
-            mobileFirst: true,
-            columns: 4,  
-			breakAt: {
-				400: 2,
-				700: 3,
-				1100: 4,
-			},  
-			margin: {
-				x: 10,
-				y: 10,
-			}    
-        });
-    
-	</script>
 </body>
 </html>

@@ -31,21 +31,21 @@ body {
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #fff;
+    color:    #a0a0a0;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #fff;
+   color:     #a0a0a0;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #fff;
+   color:     #a0a0a0;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #fff;
+   color:     #a0a0a0;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #fff;
+   color:     #a0a0a0;
 }
 
 #inputContainer {
@@ -73,7 +73,7 @@ body {
 }
 
 #inputContainer label {
-	color: #a0a0a0;
+	color: #fff;
     font-size: 13px;
     margin-top: 15px;
     display: block;
@@ -94,7 +94,7 @@ body {
 
 #inputContainer button:hover {
     cursor: pointer;
-    background-color: #EE82EE;
+    background-color: #E96669;
 }
 
 .hasAccountText span {
@@ -118,7 +118,7 @@ body {
 }
 
 #loginText h1 {
-    color: #EE82EE;
+    color: #E96669;
     font-size: 60px;
     font-weight: bold;
 }
@@ -137,17 +137,17 @@ body {
 }
 
 #inputContainer .errorMessage {
-    color: #EE82EE;
+    color: #E96669;
     font-size: 12px;
     display: block;
 }
 
 #registerForm h2 {
-    color: #EE82EE;
+    color: #E96669;
 }
 
 #loginForm h2 {
-    color: #EE82EE;
+    color: #E96669;
 }
 
 li span {
