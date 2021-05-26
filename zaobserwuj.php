@@ -10,16 +10,15 @@ $id = $_GET['id'];
 if (isset($_GET['id_watched'])) {
     //ze strony obserwuj.php
     $id_watched = $_GET['id_watched'];
-    $query = "DELETE FROM  watched WHERE id_user=$id AND id_watched=$id_watched;";
+    $query = "INSERT INTO watched VALUES ($id, $id_watched);";
     $result = mysqli_query($con, $query);
     echo '<meta http-equiv="refresh" content="0; url=obserwuj.php" />';
 }
-
 if (isset($_GET['watchedId'])) {
     //ze strony user.php
     $username = $_GET['username'];
     $id_watched = $_GET['watchedId'];
-    $query = "DELETE FROM  watched WHERE id_user=$id AND id_watched=$id_watched;";
+    $query = "INSERT INTO watched VALUES ($id, $id_watched);";
     $result = mysqli_query($con, $query);
     echo '<meta http-equiv="refresh" content="0; url=user.php?username=' . $username . '" />';
 }

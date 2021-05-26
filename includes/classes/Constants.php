@@ -1,7 +1,7 @@
 <?php
 class Constants {
 
-	public static $passwordsDoNoMatch = "Twoje hasło nie pasuje do podanego";
+	public static $passwordsDoNoMatch = "Twoje hasła nie pasują do siebie";
 	public static $passwordNotAlphanumeric = "Twoje hasło może zawierać tylko cyfry i litery";
 	public static $passwordCharacters = "Twoje hasło musi zawierać od 5 do 30 znaków";
 	public static $emailInvalid = "Email jest niepoprawny";
@@ -11,7 +11,7 @@ class Constants {
 	public static $firstNameCharacters = "Twoje imie musi mieć od 2 do 25 liter";
 	public static $usernameCharacters = "Twój login musi zawierać od 2 do 25 znaków";
 	public static $usernameTaken = "Ten login jest już zajęty";
-
+	public static $wrongOldPassword = "Stare hasło jest niepoprawne.";
 	public static $loginFailed = "Twój login lub hasło jest błedne";
 
 }

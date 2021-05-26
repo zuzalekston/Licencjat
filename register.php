@@ -20,7 +20,7 @@
 	<title>Grafi</title>
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/register.css">
-
+	<link rel="shortcut icon" href="arbuz.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
 </head>
@@ -53,7 +53,7 @@
 
 			<div id="inputContainer">
 				<form id="loginForm" action="register.php" method="POST">
-					<h2>Zaloguj się</h2>
+					<h2 style="text-shadow: 2px 2px #000;">Zaloguj się</h2>
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Login</label>
@@ -67,7 +67,7 @@
 					<button type="submit" name="loginButton">ZALOGUJ</button>
 
 					<div class="hasAccountText">
-						<span id="hideLogin">Nie masz konta? Zarejestruj się tu!</span>
+						<span id="hideLogin" >Nie masz konta? Zarejestruj się tu!</span>
 					</div>
 					
 				</form>
@@ -133,8 +133,8 @@
 			</div>
 
 			<div id="loginText">
-				<h1>Masz piękne zdjęcia i chcesz się nimi podzielić?</h1>
-				<h2>Publikuj zdjęcia i obrazki w GRAFI!</h2>
+				<h1 style="font-size: 45px; text-shadow: 2px 2px #000;">Masz piękne zdjęcia i chcesz się nimi podzielić?</h1>
+				<h2 style="padding-bottom:-10px;">Publikuj zdjęcia i obrazki w Grafi!</h2>
 				<ul style="padding-left:3em">
 					<li style="padding-left:0.5em"><span>Używaj serwisu zupełnie za darmo</span></li>
 					<li style="padding-left:0.5em"><span>Dodawaj ulubione zdjęcia</span></li>

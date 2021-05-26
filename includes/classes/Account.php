@@ -15,7 +15,7 @@ class Account
     {
         $pw = md5($pw);
 
-        $query = mysqli_query($this->con, "SELECT * FROM Users WHERE username='$un' AND password='$pw'");
+        $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
 
         if (mysqli_num_rows($query) == 1) {
             return true;
@@ -34,7 +34,7 @@ class Account
         $this->validateEmails($em, $em2);
         $this->validatePasswords($pw, $pw2);
 
-        echo $this->errorArray;
+        //echo $this->errorArray;
 
         if (empty($this->errorArray) == true) {
             //Insert into db
@@ -45,6 +45,26 @@ class Account
 
     }
 
+    public function changePassword($un, $stare, $pw, $pw2)
+    {
+        $encryptedPw = md5($stare);
+        $query = "SELECT * FROM users WHERE username='$un' AND users.password='$encryptedPw'";
+        $result = mysqli_query($this->con, $query);
+
+        if (mysqli_num_rows($result) != 1) {
+            array_push($this->errorArray, Constants::$wrongOldPassword);
+            return false;
+        }
+        $this->validatePasswords($pw, $pw2);
+        //echo end($this->errorArray);
+        if (empty($this->errorArray) == true) {
+            //update db
+            return $this->updateUserPassword($un, $pw);
+        } else {
+            return false;
+        }
+    }
+
     public function getError($error)
     {
         if (!in_array($error, $this->errorArray)) {
@@ -53,15 +73,28 @@ class Account
         return "<span class='errorMessage'>$error</span>";
     }
 
+    public function getLastError()
+    {
+        return end($this->errorArray);
+    }
+
     private function insertUserDetails($un, $fn, $ln, $em, $pw)
     {
-        $encryptedPw = md5($pw);  
+        $encryptedPw = md5($pw);
 
-        $query = "INSERT INTO Users VALUES (NULL, '$un', '$fn', '$ln', '$em', '$encryptedPw')";
-        
+        $query = "INSERT INTO users VALUES (NULL, '$un', '$fn', '$ln', '$em', '$encryptedPw', NULL)";
+
         $result = mysqli_query($this->con, $query);
-        
 
+        return $result;
+    }
+
+    private function updateUserPassword($un, $pw)
+    {
+        $encryptedPw = md5($pw);
+        $query = "UPDATE users SET `password` = '$encryptedPw' WHERE username = '$un';";
+        //echo $query;
+        $result = mysqli_query($this->con, $query);
         return $result;
     }
 
@@ -73,8 +106,8 @@ class Account
             return;
         }
 
-        $query = "SELECT username FROM Users WHERE username='$un'";
-        echo $query;
+        $query = "SELECT username FROM users WHERE username='$un'";
+        //echo $query;
         $checkUsernameQuery = mysqli_query($this->con, $query);
 
         if (mysqli_num_rows($checkUsernameQuery) != 0) {
@@ -112,7 +145,7 @@ class Account
             return;
         }
 
-        $checkEmailQuery = mysqli_query($this->con, "SELECT email FROM Users WHERE email='$em'");
+        $checkEmailQuery = mysqli_query($this->con, "SELECT email FROM users WHERE email='$em'");
         if (mysqli_num_rows($checkEmailQuery) != 0) {
             array_push($this->errorArray, Constants::$emailTaken);
             return;

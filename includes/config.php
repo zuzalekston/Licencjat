@@ -6,7 +6,7 @@ $timezone = date_default_timezone_set("Europe/London");
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$dbname = 'licencjat';
+$dbname = '18_lekston';
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("Bład połączenia z bazą");
 
