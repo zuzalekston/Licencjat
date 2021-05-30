@@ -23,6 +23,8 @@
 	<link rel="shortcut icon" href="arbuz.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 	<?php

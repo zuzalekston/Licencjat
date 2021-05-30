@@ -61,6 +61,20 @@ body {
     color: #fff;
 }
 
+.navbar {
+        
+}
+
+@media (max-width: 775px) {
+    #nav {
+        display: none;
+        width: 0;
+        
+    }
+
+    
+}
+
 #navText {
     width: 80%;
     margin: auto;
@@ -114,6 +128,12 @@ body {
     height: 100%;
 }
 
+@media (max-width: 775px) {
+    .imagesBox {
+        width: 100%;
+    }
+}
+
 #background {
     background: url('arbuzy.jpg'); 
 	background-repeat: repeat;
@@ -140,6 +160,7 @@ body {
 
 #singleImage {
     max-height: 550px;
+
 }
 
 .aboutImage {
@@ -152,12 +173,40 @@ body {
     flex: none;
     margin-top: 20px;
     width: 35%;
-    
     padding-left: 30px;
 }
 
 #pusty {
     width: 100%;
+}
+
+@media (max-width: 775px) {
+    #singleImageDiv {
+        display: block;
+        flex-direction: unset;
+        flex-wrap: nowrap;
+    }
+
+    .singleimages {
+        position: static;
+    }
+
+    .aboutImage {
+        width: 100%;
+        padding-right: 30px;
+        padding-top: 0;
+        padding-left: 10px;
+    }
+
+    #pusty {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    #comments {
+        width: 100%;
+    }
+
 }
 
 #imageDiv {
@@ -229,7 +278,7 @@ body {
 
 
 .imagesBox,
-.imagesBoxTable, #zmien, #zmienForm {
+.imagesBoxTable, #zmien, #zmienForm, .navbar {
     color: #fff;
 }
 
@@ -321,9 +370,8 @@ body {
 }
 
 .opacity {
-    margin: 5%;
+    margin: 3%;
     background-color: rgba(0,0,0,0.7);
-    height: 80%;
 }
 
 #commentForm {
@@ -397,7 +445,7 @@ body {
 }
 @media(max-width: 1750px) {
     .my-custom-scrollbar{
-        height: 400px;
+        height: 325px;
     }
 }
 
@@ -423,3 +471,64 @@ body {
     color: #a0a0a0;
     font-size: 28px;    
 }
+
+.topnav {
+    overflow:visible;
+    background-color: #000;
+    position: absolute;
+    top:0;
+    width: 100%;
+    visibility: hidden;
+    
+}
+
+@media (max-width: 775px) {
+    .topnav {
+        position: static;
+        visibility: visible;
+        float: right;
+        z-index: 1;
+    }
+
+}
+  
+  /* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+    display: none;
+}
+  
+  /* Style navigation menu links */
+  .topnav a {
+    color: #fff;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  /* Style the hamburger menu */
+  .topnav a.icon {
+    background: #000;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .topnav a:hover {
+    color: #E96669;
+  }
+  
+  /* Style the active link (or home/logo) */
+  .active {
+    background-color: #000;
+    color: #fff;
+
+  }
+
+  .form-check-input:checked {
+    background-color: #E96669;
+  }

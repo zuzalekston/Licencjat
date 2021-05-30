@@ -17,27 +17,51 @@ if (isset($_SESSION['userLoggedIn'])) {
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="shortcut icon" href="arbuz.png">
+	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script>
-		$(document).ready(function(){
-			$(window).scroll(function(){
-				if($(this).scrollTop() > 40){
-					$('#topBtn').fadeIn();
-				} else{
-					$('#topBtn').fadeOut();
-				}
-			});
-
-			$("#topBtn").click(function(){
-				$('html,body').animate({scrollTop : 0},800);
-			});
-		});
+		function myFunction() {
+			var x = document.getElementById("myLinks");
+			if (x.style.display === "block") {
+				x.style.display = "none";
+			} else {
+				x.style.display = "block";
+			}
+		}
 	</script>
 </head>
 
 <body>
+	<?php
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+?>
+<div class="topnav">
+<?php echo "<p ><a href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="index.php">MOJA GALERIA</a>
+    <a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a>
+    <a href="obserwowane.php">OBSERWOWANE</a>
+	<a href="obserwuj.php">OBSERWUJ</a>
+	<a href="addImage.php">DODAJ OBRAZEK</a>
+	<a href="ustawienia.php">USTAWIENIA</a>
+
+	<p style="color:#a0a0a0; font-size:14px; padding-top:20px;"><a id="skoncz" href="serwis.php">O serwisie</a></p>
+	<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 	<div id="container">
 
 			<div class="imagesBox" class="gallery">
@@ -59,7 +83,8 @@ $share = mysqli_query($con, $query);?>
 						<?php
 while ($row = mysqli_fetch_array($share)) {
     echo "<div id='imageDiv'>";
-    echo "<a href='single.php?id=" . $row['id'] . "&username=" . $row['username'] . "'>";
+    echo "<a href='single.php?id=" . $row['id'] . "'>";
+    echo "<input type='hidden' name='name'> </input>";
     echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' class='img-fluid' alt='Responsive image' />";
     echo "<div id='hide'>";
 
@@ -73,7 +98,27 @@ while ($row = mysqli_fetch_array($share)) {
 }
 
 ?>
-<button id="topBtn"><i class="fas fa-angle-up" >TOP</i></button>
+
+		<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">
+			<a class="page-link" href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
+			</a>
+			</li>
+			<li class="page-item"><a class="page-link" href="oberwowane.php?page=">1</a></li>
+			<li class="page-item"><a class="page-link" href="obserwowane.php?page=">2</a></li>
+			<li class="page-item"><a class="page-link" href="obserwowane.php?page=">3</a></li>
+			<li class="page-item">
+			<a class="page-link" href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+			</a>
+			</li>
+		</ul>
+		</nav>
+
 			</div>
 			<div id="nav" >
 				<div id="navText">

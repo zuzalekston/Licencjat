@@ -14,6 +14,8 @@ if (isset($_SESSION['userLoggedIn'])) {
 } else {
     header("Location: register.php");
 }
+
+echo "<h2>Gdy ładowanie zostanie zakończone, wyświetli się stosowny komunikat.</h2>";
 //$target_dir = "uploads/";
 //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -74,15 +76,19 @@ if ($uploadOk == 0) {
 
     $imgContent = addslashes(file_get_contents($image));
 
-    $query = "INSERT INTO images VALUES (NULL, (SELECT id FROM users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', $isPublic, 0);";
-    //echo $query;
-    //$result = mysqli_query($con, $query);
-
-    if ($con->query($query) === false) {
-        echo "Error: " . $query . "<br>" . $con->error;
+    if ($hex_string == '') {
         alert("Wystąpił błąd. Obraz nie został dodany.");
     } else {
-        alert("Obraz został dodany.");
+        $query = "INSERT INTO images VALUES (NULL, (SELECT id FROM users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', $isPublic, 0);";
+        //echo $query;
+        //$result = mysqli_query($con, $query);
+
+        if ($con->query($query) === false) {
+            echo "Error: " . $query . "<br>" . $con->error;
+            alert("Wystąpił błąd. Obraz nie został dodany.");
+        } else {
+            alert("Obraz został dodany.");
+        }
     }
 
 }

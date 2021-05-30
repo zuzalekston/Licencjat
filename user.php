@@ -18,11 +18,42 @@ if (isset($_SESSION['userLoggedIn'])) {
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
     <link rel="shortcut icon" href="arbuz.png">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		function myFunction() {
+			var x = document.getElementById("myLinks");
+			if (x.style.display === "block") {
+				x.style.display = "none";
+			} else {
+				x.style.display = "block";
+			}
+		}
+	</script>
 
 </head>
 <body>
+<div class="topnav">
+<?php echo "<p ><a href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="index.php">MOJA GALERIA</a>
+    <a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a>
+    <a href="obserwowane.php">OBSERWOWANE</a>
+	<a href="obserwuj.php">OBSERWUJ</a>
+	<a href="addImage.php">DODAJ OBRAZEK</a>
+	<a href="ustawienia.php">USTAWIENIA</a>
 
+	<p style="color:#a0a0a0; font-size:14px; padding-top:20px;"><a id="skoncz" href="serwis.php">O serwisie</a></p>
+	<p id="wyloguj"><a id="wylogujText" href="register.php">Wyloguj</a></p>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 
 
 	<div id="container">
@@ -49,7 +80,7 @@ if ($username != $_SESSION['userLoggedIn']) {
     $row2 = mysqli_fetch_array($result2);
     if ($row2['aboutUser'] != null) {
         echo "<p>" . $row2['aboutUser'] . "</p>";
-    }
+        }
 } else {
     echo "<b id='userObserwuj'>Twój profil</b></p>";
     if ($row['aboutUser'] == null) {
@@ -64,14 +95,14 @@ if ($username != $_SESSION['userLoggedIn']) {
 				</div>
 
 				<div class="imagesBox" style = "width:100%;">
-					<?php $query = "SELECT i.id, i.title, i.text, i.image, i.type FROM images as i JOIN users as u ON i.id_user = u.id WHERE username = '" . $username . "' ORDER BY i.id DESC;";
+					<?php $query = "SELECT i.id, i.title, i.text, i.image, i.type FROM images as i JOIN users as u ON i.id_user = u.id WHERE username = '" . $username . "' AND is_public = 1 ORDER BY i.id DESC;";
 $images = mysqli_query($con, $query);
 //$id_image = $_GET['id_image'];
 
 while ($row = mysqli_fetch_array($images)) {
 
     echo "<div id='imageDiv'>";
-    echo "<a href='single.php?id=" . $row['id'] . "&username=" . $userLoggedIn . "'>";
+    echo "<a href='single.php?id=" . $row['id'] . "&username=" . $username. "'>";
     echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' class='img-fluid' alt='Responsive image'>";
     echo "<div id='hide'>";
     echo "<p clsss='hiddenText'>" . $row['title'] . "</p>";
