@@ -83,6 +83,7 @@ class Account
         $encryptedPw = md5($pw);
 
         $query = "INSERT INTO users VALUES (NULL, '$un', '$fn', '$ln', '$em', '$encryptedPw', NULL)";
+        alert($query);
 
         $result = mysqli_query($this->con, $query);
 
@@ -101,7 +102,7 @@ class Account
     private function validateUsername($un)
     {
 
-        if (strlen($un) > 25 || strlen($un) < 2) {
+        if (strlen($un) > 15 || strlen($un) < 2) {
             array_push($this->errorArray, Constants::$usernameCharacters);
             return;
         }

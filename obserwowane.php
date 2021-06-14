@@ -10,13 +10,32 @@ if (isset($_SESSION['userLoggedIn'])) {
 }
 
 //include "szukaj.php";
+
+$username = $_SESSION['userLoggedIn'];
+$userId = $_SESSION['userId'];
+
+$limit = 12;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+if ($page <= 0) {
+    $page = 1;
+}
+$start = ($page - 1) * $limit;
+
+$pytanie = "SELECT COUNT(i.id) AS id FROM images i JOIN users u on u.id = i.id_user JOIN watched f ON f.id_watched = u.id WHERE f.id_user = $userId AND i.is_public = 1 ORDER BY i.id DESC LIMIT $start, $limit";
+$wynik = mysqli_query($con, $pytanie);
+$wiersz = mysqli_fetch_row($wynik);
+$total = $wiersz[0];
+$pages = ceil($total / $limit);
+
+$previous = $page - 1;
+$next = $page + 1;
 ?>
 <html>
 <head>
-	<title>Grafi</title>
+	<title>Licencjat</title>
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
-	<link rel="shortcut icon" href="arbuz.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
@@ -68,8 +87,6 @@ if (isset($_GET['page'])) {
 						<?php
 //$id_image = $_GET['id_image'];
 
-$username = $_SESSION['userLoggedIn'];
-$userId = $_SESSION['userId'];
 ?>
 
 							<?php
@@ -77,7 +94,7 @@ $query = "SELECT title, image, type, u.username, i.id FROM images i
 					JOIN users u on u.id = i.id_user
 					JOIN watched f ON f.id_watched = u.id
 					WHERE f.id_user = $userId AND i.is_public = 1
-					ORDER BY i.id DESC";
+					ORDER BY i.id DESC LIMIT $start, $limit";
 $share = mysqli_query($con, $query);?>
 
 						<?php
@@ -99,31 +116,12 @@ while ($row = mysqli_fetch_array($share)) {
 
 ?>
 
-		<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item">
-			<a class="page-link" href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-				<span class="sr-only">Previous</span>
-			</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="oberwowane.php?page=">1</a></li>
-			<li class="page-item"><a class="page-link" href="obserwowane.php?page=">2</a></li>
-			<li class="page-item"><a class="page-link" href="obserwowane.php?page=">3</a></li>
-			<li class="page-item">
-			<a class="page-link" href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-				<span class="sr-only">Next</span>
-			</a>
-			</li>
-		</ul>
-		</nav>
-
 			</div>
 			<div id="nav" >
 				<div id="navText">
 				<?php echo "<p id='headText'><a id='userHref' href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
 					<p class="menu"><a class="menuText" href="index.php">MOJA GALERIA</a></p>
+					<p class="menu"><a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a></p>
 					<p class="menu"><a id="activePage" class="menuText" href="obserwowane.php">OBSERWOWANE</a></p>
 					<p class="menu"><a class="menuText" href="obserwuj.php">OBSERWUJ</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">DODAJ OBRAZEK</a></p>
@@ -144,6 +142,32 @@ while ($row = mysqli_fetch_array($share)) {
 				</div>
 
 			</div>
+
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+
+						<li class="page-item">
+						<a class="page-link" href="obserwowane.php?page=<?=$previous;?>" tabindex="-1" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+						</a>
+						</li>
+
+					<?php for ($i = 1; $i <= $pages; $i++): ?>
+						<li class="page-item"><a class="page-link" href="obserwowane.php?page=<?=$i;?>"><?=$i;?></a></li>
+					<?php endfor;?>
+					<?php if ($pages != 1) {
+    if ($page < ($i - 1)) {?>
+								<li class="page-item">
+								<a class="page-link" href="obserwowane.php?page=<?=$next;?>" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+									<span class="sr-only">Next</span>
+								</a>
+								</li>
+							<?php }?>
+					<?php }?>
+				</ul>
+			</nav>
 	</div>
 
 	<script>
@@ -157,12 +181,12 @@ while ($row = mysqli_fetch_array($share)) {
             waitForimages: true,
             useOwnImageLoader: false,
             debug: true,
-            mobileFirst: true,
+            mobileFirst: false,
             columns: 4,
 			breakAt: {
 				400: 1,
 				500: 2,
-				700: 3,
+				900: 3,
 				1100: 4,
 			},
 			margin: {

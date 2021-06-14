@@ -12,10 +12,10 @@ if (isset($_SESSION['userLoggedIn'])) {
 ?>
 <html>
 <head>
-	<title>Grafi</title>
+	<title>Licencjat</title>
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
-	<link rel="shortcut icon" href="arbuz.png">
+	
 	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
@@ -83,7 +83,7 @@ $username = $_SESSION['userLoggedIn'];
 $userId = $_SESSION['userId'];
 $query = "SELECT w.id_user, u.id, u.username FROM watched w JOIN users u ON u.id = w.id_watched WHERE w.id_user = $userId
 UNION
-SELECT NULL, id, username from users WHERE id not in (SELECT id_watched FROM watched WHERE id_user = $userId) AND id != $userId 
+SELECT NULL, id, username from users WHERE id not in (SELECT id_watched FROM watched WHERE id_user = $userId) AND id != $userId
 ORDER BY id_user DESC, username ASC";
 //$query = "SELECT CASE w.id_user WHEN $userId THEN w.id_user ELSE NULL END AS id_user ,u.id ,u.username FROM watched w RIGHT JOIN users u ON u.id = w.id_watched WHERE u.id !=$userId";
 
@@ -121,6 +121,7 @@ while ($row = mysqli_fetch_array($share)) {
 				<div id="navText">
 				<?php echo "<p id='headText'><a id='userHref' href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
 					<p class="menu"><a class="menuText" href="index.php">MOJA GALERIA</a></p>
+					<p class="menu"><a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a></p>
 					<p class="menu"><a class="menuText" href="obserwowane.php">OBSERWOWANE</a></p>
 					<p class="menu"><a id="activePage" class="menuText" href="obserwuj.php">OBSERWUJ</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">DODAJ OBRAZEK</a></p>

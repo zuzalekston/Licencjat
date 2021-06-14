@@ -1,8 +1,9 @@
 <html>
 <head>
-    <title>Grafi</title>
+    <title>Licencjat</title>
     <link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="shortcut icon" href="arbuz.png">
 </head>
     <body>

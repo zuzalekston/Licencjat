@@ -9,7 +9,7 @@ class Constants {
 	public static $emailTaken = "Ten email jest już zajęty";
 	public static $lastNameCharacters = "Twoje nazwisko musi mieć od 2 do 25 liter";
 	public static $firstNameCharacters = "Twoje imie musi mieć od 2 do 25 liter";
-	public static $usernameCharacters = "Twój login musi zawierać od 2 do 25 znaków";
+	public static $usernameCharacters = "Twój login musi zawierać od 2 do 15 znaków";
 	public static $usernameTaken = "Ten login jest już zajęty";
 	public static $wrongOldPassword = "Stare hasło jest niepoprawne.";
 	public static $loginFailed = "Twój login lub hasło jest błedne";

@@ -14,10 +14,10 @@ if (isset($_SESSION['userLoggedIn'])) {
 
 <html>
 <head>
-	<title>Grafi</title>
+	<title>Licencjat</title>
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="shortcut icon" href="arbuz.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
@@ -80,7 +80,7 @@ if ($username != $_SESSION['userLoggedIn']) {
     $row2 = mysqli_fetch_array($result2);
     if ($row2['aboutUser'] != null) {
         echo "<p>" . $row2['aboutUser'] . "</p>";
-        }
+    }
 } else {
     echo "<b id='userObserwuj'>Twój profil</b></p>";
     if ($row['aboutUser'] == null) {
@@ -102,7 +102,7 @@ $images = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($images)) {
 
     echo "<div id='imageDiv'>";
-    echo "<a href='single.php?id=" . $row['id'] . "&username=" . $username. "'>";
+    echo "<a href='single.php?id=" . $row['id'] . "&username=" . $username . "'>";
     echo "<img id='image' src='data:" . $row['type'] . ";base64, " . $row['image'] . "' class='img-fluid' alt='Responsive image'>";
     echo "<div id='hide'>";
     echo "<p clsss='hiddenText'>" . $row['title'] . "</p>";
@@ -119,6 +119,7 @@ while ($row = mysqli_fetch_array($images)) {
 				<div id="navText">
 				<?php echo "<p id='headText'><a id='userHref' href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
 					<p class="menu"><a class="menuText" href="index.php">MOJA GALERIA</a></p>
+                    <p class="menu"><a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a></p>
 					<p class="menu"><a class="menuText" href="obserwowane.php">OBSERWOWANE</a></p>
 					<p class="menu"><a class="menuText" href="obserwuj.php">OBSERWUJ</a></p>
 					<p class="menu"><a class="menuText" href="addImage.php">DODAJ OBRAZEK</a></p>

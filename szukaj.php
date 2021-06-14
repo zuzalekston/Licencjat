@@ -12,10 +12,10 @@ if (isset($_SESSION['userLoggedIn'])) {
 ?>
 <html>
 <head>
-	<title>Grafi</title>
+	<title>Licencjat</title>
 	<link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="index.css">
-	<link rel="shortcut icon" href="arbuz.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
@@ -54,7 +54,7 @@ if (isset($_SESSION['userLoggedIn'])) {
   </a>
 </div>
 	<div id="container">
-			<div class="imagesBox" class="szukajBox">
+			<div class="imagesBox" id="szukajBox">
 				<?php
 //$userId = mysqli_query($con, "SELECT id FROM users WHERE username = '".$_SESSION['userLoggedIn']."'");
 //echo $userId;
@@ -63,7 +63,7 @@ if (isset($_POST['szukajButton'])) {
     //szukaj button was pressed
     $szukany = $_POST['search_user'];
 
-    $id_image = $_GET['id_image'];
+    //$id_image = $_GET['id_image'];
     $username = $_SESSION['userLoggedIn'];
 
     echo "<div id='searched_user'>";
@@ -112,6 +112,7 @@ if (isset($_POST['szukajButton'])) {
 					<div id="navText">
 					<?php echo "<p id='headText'><a id='userHref' href='user.php?username=" . $_SESSION['userLoggedIn'] . "'>" . $_SESSION['userLoggedIn'] . " </a></p>"; ?>
 						<p class="menu"><a class="menuText" href="index.php">MOJA GALERIA</a></p>
+						<p class="menu"><a id="ukryta" href="hiddengallery.php">UKRYTA GALERIA</a></p>
 						<p class="menu"><a class="menuText" href="obserwowane.php">OBSERWOWANE</a></p>
 						<p class="menu"><a class="menuText" href="obserwuj.php">OBSERWUJ</a></p>
 						<p class="menu"><a class="menuText" href="addImage.php">DODAJ OBRAZEK</a></p>

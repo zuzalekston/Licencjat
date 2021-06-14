@@ -1,9 +1,10 @@
 <html>
     <head>
-        <title>Grafi</title>
+        <title>Licencjat</title>
         <link href="bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="index.css">
-        <link rel="shortcut icon" href="arbuz.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
 <body>
@@ -77,14 +78,14 @@ if ($uploadOk == 0) {
     $imgContent = addslashes(file_get_contents($image));
 
     if ($hex_string == '') {
-        alert("Wystąpił błąd. Obraz nie został dodany.");
+        alert("Wystąpił błąd. Obraz nie został dodany. Zmiejsz rozmiar pliku.");
     } else {
-        $query = "INSERT INTO images VALUES (NULL, (SELECT id FROM users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', $isPublic, 0);";
+        $query = "INSERT INTO images VALUES (NULL, (SELECT id FROM users WHERE username='$username'),'$title', '$text', '$hex_string', '$type', $isPublic);";
         //echo $query;
         //$result = mysqli_query($con, $query);
 
         if ($con->query($query) === false) {
-            echo "Error: " . $query . "<br>" . $con->error;
+            //echo "Error: " . $query . "<br>" . $con->error;
             alert("Wystąpił błąd. Obraz nie został dodany.");
         } else {
             alert("Obraz został dodany.");
